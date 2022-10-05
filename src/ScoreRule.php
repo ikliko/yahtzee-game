@@ -13,20 +13,26 @@ use Illuminate\Support\Collection;
 
 class ScoreRule {
     public function getScore(Collection $rolls) {
-        $digit = null;
-        $countEquals = 0;
-
-        foreach ($rolls as $roll) {
-            if(!$digit) {
-                $digit = $roll;
-                continue;
-            }
-
-            if($digit === $roll) {
-                $countEquals++;
-            }
+        if(
+            $this->isStraight($rolls)
+        ) {
+            return 40;
         }
 
-        dd($rolls, $rolls, $countEquals, $rolls->sum());
+        return $rolls->sum();
+    }
+
+    private function straight(Collection $rolls) {
+        if(
+            ($rolls->has(1) || $rolls->has(6)) &&
+            $rolls->has(2) &&
+            $rolls->has(3) &&
+            $rolls->has(4) &&
+            $rolls->has(5)
+        ) {
+            return true;
+        }
+
+        return false;
     }
 }

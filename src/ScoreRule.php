@@ -22,7 +22,7 @@ class ScoreRule {
         return $rolls->sum();
     }
 
-    private function straight(Collection $rolls) {
+    private function isStraight(Collection $rolls) {
         if(
             ($rolls->has(1) || $rolls->has(6)) &&
             $rolls->has(2) &&

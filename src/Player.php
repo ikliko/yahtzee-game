@@ -17,7 +17,14 @@ class Player {
     }
 
     public function play() {
+        $dices = collect([1, 1, 1, 1, 1])->map(function ($value) {
+            return rand(1, 6);
+        });
 
+        $scoreRule = new ScoreRule();
+        $scoreRule->getScore($dices);
+
+        return $dices;
     }
 
     public function reset() {

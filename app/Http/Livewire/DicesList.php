@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire;
 
+use Ekkosense\Yacht\Player;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class DicesList extends Component {
@@ -15,11 +17,8 @@ class DicesList extends Component {
     }
 
     public function roll() {
-        $this->dices = collect($this->dices)->map(function ($value) {
-            return rand(1, 6);
-        });
-
-
+        $player = new Player(Auth::user()->name);
+        $this->dices = $player->play();
     }
 
     public function render() {

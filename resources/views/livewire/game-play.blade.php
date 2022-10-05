@@ -16,19 +16,19 @@
         </div>
     @else
 
-
         <div class="flex flex-col gap-3">
-            <div class="flex gap-3">
-                @for($i = 0; $i < 5; $i++)
-                    <livewire:dice :key="uniqid()"></livewire:dice>
-                @endfor
-            </div>
+            <livewire:dices-list></livewire:dices-list>
 
-            <button type="button"
-                    class="bg-indigo-500 rounded-xl py-3 text-white"
-                    wire:click="rollDices()">
-                Roll dices
-            </button>
+
+            @if($game->activePlayer->user_id === \Illuminate\Support\Facades\Auth::user()->id)
+                <button type="button"
+                        class="bg-indigo-500 rounded-xl py-3 text-white"
+                        wire:click="rollDices()">
+                    Roll dices
+                </button>
+            @else
+                wait your turn
+            @endif
         </div>
 
         <table class="border-collapse border border-slate-500 text-center">

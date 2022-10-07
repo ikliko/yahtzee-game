@@ -13,9 +13,7 @@ use Illuminate\Support\Collection;
 
 class ScoreRule {
     public function getScore(Collection $rolls) {
-        if(
-            $this->isStraight($rolls)
-        ) {
+        if ($this->isStraight($rolls)) {
             return 40;
         }
 

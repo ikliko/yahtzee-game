@@ -17,11 +17,13 @@ class Player {
     }
 
     public function play() {
-        $dices = collect([1, 1, 1, 1, 1])->map(function ($value) {
-            return rand(1, 6);
-        });
+        $dices = collect([3, 3,3,3,3])
+//            ->map(function ($value) {
+//                return rand(1, 6);
+//            });
+        ;
 
-        $scoreRule = new ScoreRule();
+        $scoreRule = new ScoreRule($dices);
         $scoreRule->getScore($dices);
 
         return $dices;

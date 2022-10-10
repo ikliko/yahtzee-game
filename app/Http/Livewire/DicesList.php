@@ -22,6 +22,8 @@ class DicesList extends Component {
     }
 
     public function render() {
+        $this->roll();
+
         return view('livewire.dices-list');
     }
 }
